@@ -1,0 +1,35 @@
+{
+  "name": "hangman",
+  "version": "1.0.0",
+  "description": "The Hangman API",
+  "main": "dist/main.js",
+  "scripts": {
+    "dev": "webpack --watch --mode development",
+    "build": "webpack --mode production"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.4",
+    "babel-preset-env": "^1.7.0",
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "joi": "^14.0.1",
+    "nodemon-webpack-plugin": "^3.0.1",
+    "pg": "^7.5.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.41.0",
+    "sequelize-cli": "^5.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "babel-loader": "^8.0.4",
+    "chalk": "^2.4.1",
+    "nodemon": "^1.18.4",
+    "webpack": "^4.23.1",
+    "webpack-cli": "^3.1.2"
+  }
+}
