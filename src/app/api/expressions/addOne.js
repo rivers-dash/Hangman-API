@@ -11,13 +11,14 @@ function requestValidation(req, res, next) {
 		if (err) {
 			res.status(404).json(err)
 		} else {
+			req.body.expression = req.body.expression.toUpperCase()
+			req.body.clue = req.body.clue.charAt(0).toUpperCase() + req.body.clue.slice(1).toLowerCase();
 			next()
 		}
 	})
 }
 
 function isExisting(req, res, next) {
-		Joi.validate({ expression: 'a string' }, schema, function (err, value) { });
 		const { expression, clue } =  req.body
 
 		Expressions.findOne({
@@ -31,8 +32,10 @@ function isExisting(req, res, next) {
 			if (expressions) {
 				res.status(400).send('Expression already exists in databese')
 				return null
-			} else
+			} else {
 					next()
+					return null
+				}
 		})
 
 			.catch(err => {
@@ -44,7 +47,7 @@ function isExisting(req, res, next) {
 function addOne(req, res) {
 		Expressions.create(req.body)
 		.then((result) => {
-			res.status(400).json(result)
+			res.status(200).json(result)
 			return null
 		})
 		.catch(err => {

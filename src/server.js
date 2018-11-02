@@ -2,6 +2,7 @@ import express from 'express'
 import { Client } from 'pg'
 import bodyParser from 'body-parser'
 import chalks from 'Utils/chalks'
+import cors from 'cors'
 
 import hangmanRoutes from 'Routes'
 import { port, db } from 'Configuration/config'
@@ -13,7 +14,10 @@ const log = console.log
 
 log(chalks.bgsuccess('server up and running on port : ', port))
 
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(
+	cors(),
+	bodyParser.urlencoded({extended: true})
+)
 
 hangman
 .authenticate()

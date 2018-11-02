@@ -8,8 +8,10 @@ function getOne(req, res) {
   	]
 	})
 	.then(expressions => {
-		if (expressions)
-			res.json(expressions)
+		if (expressions) {
+			setTimeout(() => { res.json(expressions) }, 1000)
+
+		}
 		else {
 			res.status(404).send('No expression coressponding to the generated rand id found in database')
 		}
