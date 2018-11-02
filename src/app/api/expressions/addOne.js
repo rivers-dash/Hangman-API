@@ -51,7 +51,7 @@ function addOne(req, res) {
 			return null
 		})
 		.catch(err => {
-			res.status(503).send('Error while searching expression from database')
+			res.status(503).send('Error while fetching expression from database')
 			return null
 		})
 }

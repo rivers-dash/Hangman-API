@@ -3,9 +3,12 @@ import signin from './auth/signin'
 import getOne from './expressions/getOne'
 import addOne from './expressions/addOne'
 
-export default [
+export const noAuth = [
 	login,
-	signin,
+	signin
+]
+
+export const Auth = [
 	getOne,
 	addOne
 ]

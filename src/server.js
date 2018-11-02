@@ -1,9 +1,10 @@
+require('dotenv').config()
 import express from 'express'
 import { Client } from 'pg'
 import bodyParser from 'body-parser'
 import chalks from 'Utils/chalks'
 import cors from 'cors'
-
+import cookieParser from 'cookie-parser'
 import hangmanRoutes from 'Routes'
 import { port, db } from 'Configuration/config'
 import hangman from 'Database/hangman'
@@ -19,7 +20,8 @@ log(chalks.bgsuccess('server up and running on port : ', port))
 
 app.use(
 	cors(),
-	bodyParser.urlencoded({extended: true})
+	bodyParser.urlencoded({extended: true}),
+	cookieParser()
 )
 
 app.get('/api', (req, res) => {
@@ -28,7 +30,7 @@ app.get('/api', (req, res) => {
 	})
 })
 
-app.post('/api/post', verifyToken, (req, res) => {
+app.post('/api/post', (req, res) => {
 	jwt.verify(req.token, 'secretkey', (err, authData) => {
 		if(err) {
 			res.sendStatus(403)
@@ -55,26 +57,7 @@ app.post('/api/post', verifyToken, (req, res) => {
 // 	})
 // })
 
-// Format verifyToken
-// Authorization: barer <access_token>
-function verifyToken (req, res, next) {
-	// Get auth header value
-	const bearerHeader = req.headers['authorization']
-	// Check if barer is undefined
-	if(typeof bearerHeader !== 'undefined') {
-		// split at the space
-		const bearer = bearerHeader.split(' ')
-		// Get token from array
-		const bearerToken = bearer[1]
-		// Set token
-		req.token = bearerToken
-		// Next middleware
-		next()
-	} else {
-		// Unauthorized
-		res.sendStatus(403)
-	}
-}
+
 
 hangman
 .authenticate()

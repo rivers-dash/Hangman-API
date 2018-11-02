@@ -31,15 +31,20 @@ function signin(req, res) {
 		if(user) {
 			res.status(400).json({ 'error': 'Username already exist in database' })
 		} else {
-			Users.create(req.body)
-			.then((user) => {
-				res.status(201).send(user)
-				return null
-			})
-			.catch((err) => {
-				console.log(err)
-				res.status(503).json({ 'error': 'Error searching user in database' })
-				return null
+			bcrypt.genSalt(10, function(err, salt) {
+		    bcrypt.hash(password, salt, function(err, hash) {
+		    	req.body.password = hash
+					Users.create(req.body)
+					.then((user) => {
+						res.status(201).send(user)
+						return null
+					})
+					.catch((err) => {
+						console.log(err)
+						res.status(503).json({ 'error': 'Error searching user in database' })
+						return null
+					})
+		    })
 			})
 		 }
 		 return null
