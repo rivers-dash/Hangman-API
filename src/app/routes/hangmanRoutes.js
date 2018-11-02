@@ -11,7 +11,7 @@ export default function(app, db) {
 		const { description, type, path, handlers, schema } = api
 
 
-		console.log(chalks.bginfo(type.toUpperCase()), description, ' : ', chalks.warning(path))
+		console.log(chalks.bginfo(type.toUpperCase()), chalks.warning(path), ' : ', description)
 		app[type](path, jsonParser, handlers)
 
 	})
