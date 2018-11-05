@@ -8,9 +8,9 @@ var jsonParser = bodyParser.json()
 
 console.log(chalks.bginfo('Loading API routes : '))
 
-function verifyToken (req, res, next) {
-	if(typeof req.cookies.token !== 'undefined') {
-		jwt.verify(req.cookies.token, process.env.DEV_PRIVATE_KEY, function(err, decoded) {
+function verifyLogin (req, res, next) {
+	if(typeof req.cookies.login !== 'undefined') {
+		jwt.verify(req.cookies.login, process.env.DEV_PRIVATE_KEY, function(err, decoded) {
 		  if(err) {
 				res.sendStatus(403)
 			} else if (decoded) {
@@ -33,7 +33,7 @@ export default function(app, db) {
 	Auth.forEach(function(api) {
 		const { description, type, path, handlers, schema } = api
 		console.log(chalks.bginfo(type.toUpperCase()), chalks.warning(path), ' : ', description)
-		app[type](path, verifyToken, jsonParser, handlers)
+		app[type](path, verifyLogin, jsonParser, handlers)
 	})
 
 };

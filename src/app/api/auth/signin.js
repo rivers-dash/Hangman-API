@@ -5,7 +5,8 @@ import jwt from 'jsonwebtoken'
 
 const schema = {
 	username: Joi.string().min(3).max(25).required(),
-	password: Joi.string().min(8).max(40).required()
+	password: Joi.string().min(8).max(40).required(),
+	isAdmin: Joi.boolean().required()
 }
 
 function requestValidation(req, res, next) {
@@ -27,7 +28,6 @@ function signin(req, res) {
 		raw: true
 	})
 	.then((user) => {
-		console.log(!user)
 		if(user) {
 			res.status(400).json({ 'error': 'Username already exist in database' })
 		} else {
@@ -40,7 +40,6 @@ function signin(req, res) {
 						return null
 					})
 					.catch((err) => {
-						console.log(err)
 						res.status(503).json({ 'error': 'Error searching user in database' })
 						return null
 					})

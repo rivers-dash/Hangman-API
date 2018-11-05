@@ -20,6 +20,4 @@ const sequelize = new Sequelize(database, username, password, {
   },
 })
 
-// console.log(sequelize)
-
 export default sequelize

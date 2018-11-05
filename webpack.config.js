@@ -4,7 +4,6 @@ const webpack = require('webpack');
 const fs = require('fs');
 
 const alias = require('./alias')
-console.log(alias)
 
 var nodeModules = {};
 fs.readdirSync('node_modules')

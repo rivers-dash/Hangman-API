@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs'
 
 const schema = {
 	username: Joi.string().min(3).max(25).required(),
-	password: Joi.string().min(8).max(40).required()
+	password: Joi.string().min(8).max(40).required(),
 }
 
 function requestValidation(req, res, next) {
@@ -57,7 +57,7 @@ function login(req, res) {
 	}
 
 	jwt.sign({ user: user }, process.env.DEV_PRIVATE_KEY, { expiresIn: '1h' } , (err, token) => {
-		res.cookie('token', token)
+		res.cookie('login', token)
 		res.json({
 			token: token
 		})
