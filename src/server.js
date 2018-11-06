@@ -18,46 +18,41 @@ const log = console.log
 
 log(chalks.bgsuccess('server up and running on port : ', port))
 
+var corsOptions = {
+  origin: true,
+	credentials: true,
+}
+
 app.use(
-	cors(),
+	cors(corsOptions),
+
+	function (req, res, next) {
+		// check if client sent cookie
+		//console.log(req)
+		// var cookie = req.cookies.login;
+		// if (cookie === undefined)
+		// {
+		// 	// no: set a new cookie
+		// 	var randomNumber=Math.random().toString();
+		// 	randomNumber=randomNumber.substring(2,randomNumber.length);
+		// 	res.cookie('cookieName',randomNumber, { maxAge: 900000, httpOnly: true });
+		// 	console.log('cookie created successfully');
+		// }
+		// else
+		// {
+		// 	// yes, cookie was already present
+		// 	console.log('cookie exists', cookie);
+		// }
+		next(); // <-- important!
+	},
+
+
 	bodyParser.urlencoded({extended: true}),
 	cookieParser()
 )
 
-app.get('/api', (req, res) => {
-	res.json({
-		message: 'Welcome'
-	})
-})
-
-app.post('/api/post', (req, res) => {
-	jwt.verify(req.token, 'secretkey', (err, authData) => {
-		if(err) {
-			res.sendStatus(403)
-		} else {
-			res.json({
-				authData: authData,
-				message: 'Post created ...'
-			})
-		}
-	})
-})
-
-// app.post('/api/login', (req, res) => {
-// 	// Mock user
-// 	const user = {
-// 		id: 1,
-// 		username: 'brad',
-// 		email: 'brad@gmail.com'
-// 	}
-// 	jwt.sign({ user: user }, 'secretkey', { expiresIn: '30s' } , (err, token) => {
-// 		res.json({
-// 			token: token
-// 		})
-// 	})
-// })
-
-
+// res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
+// res.header('Access-Control-Allow-Credentials', 'true')
 
 hangman
 .authenticate()

@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
 function logout(req, res) {
-	res.clearCookie("login")
+	res.clearCookie("login", { httpOnly: false })
 	res.status(200).json({ res: "Disconnected"})
 }
 

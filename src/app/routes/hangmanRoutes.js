@@ -12,13 +12,13 @@ function verifyLogin (req, res, next) {
 	if(typeof req.cookies.login !== 'undefined') {
 		jwt.verify(req.cookies.login, process.env.DEV_PRIVATE_KEY, function(err, decoded) {
 		  if(err) {
-				res.sendStatus(403)
+				res.status(403).json({ error: "Invalid cookie"})
 			} else if (decoded) {
 				next()
 			}
 		})
 	} else {
-		res.sendStatus(403)
+		res.status(403).json({ error: "No cookie found"})
 	}
 }
 
