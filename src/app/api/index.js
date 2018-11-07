@@ -4,6 +4,8 @@ import logout from './auth/logout'
 import getOne from './expressions/getOne'
 import addOne from './expressions/addOne'
 import editOne from './users/editOne'
+import hiscores from './hiscores/hiscores'
+
 
 export const noAuth = [
 	login,
@@ -14,5 +16,6 @@ export const noAuth = [
 export const Auth = [
 	getOne,
 	addOne,
-	editOne
+	editOne,
+	hiscores
 ]

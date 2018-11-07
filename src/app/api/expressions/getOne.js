@@ -22,7 +22,7 @@ function getOne(req, res) {
 
 
 export default  {
-	description: 'Getting an expression by id from database',
+	description: 'Getting random expression from database',
 	type: 'get',
 	path: '/api/expression',
 	handlers: [
