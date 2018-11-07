@@ -7,11 +7,10 @@ const schema = {
 	username: Joi.string().min(8).max(24).required(),
 	firstName: Joi.string().min(3).max(12).required(),
 	lastName: Joi.string().min(3).max(12).required(),
-	password: Joi.string().min(8).max(12).required(),
+	password: Joi.string().min(8).max(24).required(),
 }
 
 function requestValidation(req, res, next) {
-	console.log(req.body)
 	Joi.validate(req.body, schema, function (err, value) {
 		if (err) {
 			res.status(404).json(err)

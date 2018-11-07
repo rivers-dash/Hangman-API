@@ -39,7 +39,6 @@ function requestValidation(req, res, next) {
 				raw: true
 			})
 			.then((user) => {
-				console.log(user)
 				if(!user) {
 					res.status(400).json({ 'error': 'Bad username' })
 				} else {
@@ -48,7 +47,6 @@ function requestValidation(req, res, next) {
 						if(!match) {
 							res.status(400).json({ 'error': 'Bad password' })
 						} else {
-
 							req.body.id = user.id
 							req.body.firstName = user.firstName
 							req.body.lastName = user.lastName

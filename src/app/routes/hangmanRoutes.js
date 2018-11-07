@@ -12,13 +12,13 @@ function verifyLogin (req, res, next) {
 	if(typeof req.cookies.login !== 'undefined') {
 		jwt.verify(req.cookies.login, process.env.DEV_PRIVATE_KEY, function(err, decoded) {
 		  if(err) {
-				res.status(403).json({ error: "Invalid cookie"})
+				res.status(403).json({ error: 'Not connectet - please login', reason: 'Invalid cookie'})
 			} else if (decoded) {
 				next()
 			}
 		})
 	} else {
-		res.status(403).json({ error: "No cookie found"})
+		res.status(403).json({ error: 'Not connectet - please login', reason: 'No cookie found'})
 	}
 }
 
