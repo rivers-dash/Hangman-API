@@ -2,15 +2,17 @@ import login from './auth/login'
 import signin from './auth/signin'
 import logout from './auth/logout'
 import getOne from './expressions/getOne'
-import addOne from './expressions/addOne'
+import addOneE from './expressions/addOne'
+import addOneU from './users/addOne'
 
 export const noAuth = [
 	login,
 	signin,
-	logout
+	logout,
+	addOneU
 ]
 
 export const Auth = [
 	getOne,
-	addOne
+	addOneE
 ]

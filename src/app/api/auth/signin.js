@@ -4,12 +4,14 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
 const schema = {
-	username: Joi.string().min(3).max(25).required(),
-	password: Joi.string().min(8).max(40).required(),
-	isAdmin: Joi.boolean().required()
+	username: Joi.string().min(8).max(24).required(),
+	firstName: Joi.string().min(3).max(12).required(),
+	lastName: Joi.string().min(3).max(12).required(),
+	password: Joi.string().min(8).max(12).required(),
 }
 
 function requestValidation(req, res, next) {
+	console.log(req.body)
 	Joi.validate(req.body, schema, function (err, value) {
 		if (err) {
 			res.status(404).json(err)
