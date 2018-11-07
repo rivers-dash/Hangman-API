@@ -59,7 +59,7 @@ function addOne(req, res) {
 export default  {
 	description: 'Adding expression to database',
 	type: 'post',
-	path: '/expression',
+	path: '/api/expression',
 	handlers: [
 		requestValidation,
 		isExisting,
