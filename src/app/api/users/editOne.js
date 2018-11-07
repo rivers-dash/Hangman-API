@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 
 const schema = {
 	id: Joi.number().required(),
-	username: Joi.string().min(8).max(24).required(),
+	username: Joi.string().min(8).max(24),
 	firstName: Joi.string().min(3).max(12),
 	lastName: Joi.string().min(3).max(12),
 	currentPassword: Joi.string().min(8).max(24).required(),
