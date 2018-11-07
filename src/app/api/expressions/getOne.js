@@ -24,7 +24,7 @@ function getOne(req, res) {
 export default  {
 	description: 'Getting an expression by id from database',
 	type: 'get',
-	path: '/expression',
+	path: '/api/expression',
 	handlers: [
 		getOne
 	],
