@@ -11,10 +11,10 @@ const Scores = sequelize.define('scores', {
 		autoIncrement: true
 	},
   userId: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
   },
   expressionId: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
   },
 	score: {
     type: Sequelize.INTEGER
