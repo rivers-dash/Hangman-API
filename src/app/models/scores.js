@@ -4,7 +4,7 @@ import Users from './users'
 
 import sequelize from 'Database/hangman'
 
-const Hiscores = sequelize.define('hiscores', {
+const Scores = sequelize.define('scores', {
 	id: {
 		type: Sequelize.INTEGER,
 		primaryKey: true,
@@ -21,7 +21,7 @@ const Hiscores = sequelize.define('hiscores', {
   },
 });
 
-Hiscores.belongsTo(Users, {foreignKey: 'userId', targetKey: 'id'})
-Hiscores.belongsTo(Expressions, {foreignKey: 'expressionId', targetKey: 'id'})
+Scores.belongsTo(Users, {foreignKey: 'userId', targetKey: 'id'})
+Scores.belongsTo(Expressions, {foreignKey: 'expressionId', targetKey: 'id'})
 
-export default Hiscores
+export default Scores

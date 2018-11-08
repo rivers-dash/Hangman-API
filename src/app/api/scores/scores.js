@@ -1,10 +1,10 @@
-import Hiscores from 'Models/hiscores'
+import Scores from 'Models/scores'
 import Users from 'Models/users'
 import Expressions from 'Models/expressions'
 import Sequelize from 'sequelize'
 
-function getHiscores(req, res) {
-	Hiscores.findAll({
+function getScores(req, res) {
+	Scores.findAll({
 		order: [
             ['score', 'DESC'],
         ],
@@ -14,23 +14,23 @@ function getHiscores(req, res) {
 		],
     limit : 10
 	})
-	.then(hiscores => {
-		if (hiscores) {
-			setTimeout(() => { res.json(hiscores) }, 1000)
+	.then(scores => {
+		if (scores) {
+			setTimeout(() => { res.json(scores) }, 1000)
 		}
 		else {
-			res.status(404).send('No hiscores found in database')
+			res.status(404).send('No scores found in database')
 		}
 	}).catch(err => {
-		res.status(503).send('Error while getting hiscores from database')
+		res.status(503).send('Error while getting scores from database')
 	})
 }
 
 export default  {
-	description: 'Getting hiscores from database',
+	description: 'Getting scores from database',
 	type: 'get',
-	path: '/api/hiscores',
+	path: '/api/scores',
 	handlers: [
-		getHiscores
+		getScores
 	],
 }
